@@ -4,12 +4,12 @@ export default function TaskList({ valueArray, onDelete, onEdit, onToggle }) {
       <ul className="lists">
         {valueArray.map((item) => {
           return (
-            <>
+            <div key={item.id}>
               <li key={item.id}>{item.text}</li>
               <input
                 type="checkbox"
                 checked={item.isTrue}
-                onChange={onToggle}
+                onChange={() => onToggle(item.id)}
               />
               <button disabled={item.isTrue} onClick={() => onDelete(item.id)}>
                 Delete
@@ -17,7 +17,7 @@ export default function TaskList({ valueArray, onDelete, onEdit, onToggle }) {
               <button disabled={item.isTrue} onClick={() => onEdit(item.id)}>
                 Edit
               </button>
-            </>
+            </div>
           );
         })}
       </ul>
