@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+.app-container {
+  margin: 0 auto;
+}
+.list {
+  text-align: start;
+  width: auto;
+  margin-bottom: 0.6rem;
+}
+.list-text {
+  margin-right: 1rem;
+}
+.input-checkbox {
+  margin-right: 0.6rem;
+}
+button {
+  font-size: small;
+}

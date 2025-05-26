@@ -1,4 +1,5 @@
 import { use, useState } from "react";
+import "./App.css";
 import Form from "./Form";
 import TaskList from "./TaskList";
 
@@ -19,11 +20,31 @@ function App() {
     console.log(value);
   }
 
+  function onDelete(id) {
+    console.log(id);
+    setValue((prev) => prev.filter((item) => item.id !== id));
+    // console.log()
+  }
+  function onEdit(id) {}
+  function onToggle(id) {
+    console.log(id);
+    setValue((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, isTrue: !item.isTrue } : item
+      )
+    );
+  }
+
   return (
-    <>
+    <div className="app-container">
       <Form text={text} setText={setText} addName={addName} />
-      <TaskList valueArray={value} />
-    </>
+      <TaskList
+        valueArray={value}
+        onDelete={onDelete}
+        onEdit={onEdit}
+        onToggle={onToggle}
+      />
+    </div>
   );
 }
 

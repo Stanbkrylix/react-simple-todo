@@ -5,18 +5,30 @@ export default function TaskList({ valueArray, onDelete, onEdit, onToggle }) {
         {valueArray.map((item) => {
           return (
             <div key={item.id}>
-              <li key={item.id}>{item.text}</li>
-              <input
-                type="checkbox"
-                checked={item.isTrue}
-                onChange={() => onToggle(item.id)}
-              />
-              <button disabled={item.isTrue} onClick={() => onDelete(item.id)}>
-                Delete
-              </button>
-              <button disabled={item.isTrue} onClick={() => onEdit(item.id)}>
-                Edit
-              </button>
+              <li className="list" key={item.id}>
+                <span className="list-text">{item.text}</span>
+
+                <input
+                  className="input-checkbox"
+                  type="checkbox"
+                  checked={item.isTrue}
+                  onChange={() => onToggle(item.id)}
+                />
+                <button
+                  className="delete-btn"
+                  disabled={item.isTrue}
+                  onClick={() => onDelete(item.id)}
+                >
+                  Delete
+                </button>
+                <button
+                  className="edit-btn"
+                  disabled={item.isTrue}
+                  onClick={() => onEdit(item.id)}
+                >
+                  Edit
+                </button>
+              </li>
             </div>
           );
         })}
