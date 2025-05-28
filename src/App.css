@@ -57,3 +57,7 @@
 button {
   font-size: small;
 }
+.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}

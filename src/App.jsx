@@ -8,6 +8,9 @@ function App() {
   const [value, setValue] = useState([]);
   const [text, setText] = useState("");
 
+  const [draftText, setDraftText] = useState("");
+  const [editingId, setEditingId] = useState(null);
+
   function addName() {
     if (!text.trim()) return;
 
@@ -35,6 +38,7 @@ function App() {
     );
   }
 
+  const filterArray = value.filter((item) => !item.isTrue);
   return (
     <div className="app-container">
       <Form text={text} setText={setText} addName={addName} />
@@ -43,6 +47,7 @@ function App() {
         onDelete={onDelete}
         onEdit={onEdit}
         onToggle={onToggle}
+        filterArray={filterArray}
       />
     </div>
   );
