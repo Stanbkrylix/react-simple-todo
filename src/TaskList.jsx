@@ -9,7 +9,6 @@ export default function TaskList({
   setDraftText,
   setEditingId,
   onConfirm,
-  onCancel,
 }) {
   return (
     <div className="task-list-container">
@@ -31,8 +30,18 @@ export default function TaskList({
                   placeholder="Edit"
                   onChange={(e) => setDraftText(e.target.value)}
                 />
-                <button className="confirm-btn">Confirm</button>
-                <button className="cancel-btn">Cancel</button>
+                <button
+                  className="confirm-btn"
+                  onClick={() => onConfirm(item.id)}
+                >
+                  Confirm
+                </button>
+                <button
+                  className="cancel-btn"
+                  onClick={() => setEditingId(null)}
+                >
+                  Cancel
+                </button>
               </li>
             </div>
           ) : (

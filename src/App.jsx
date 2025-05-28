@@ -4,7 +4,6 @@ import Form from "./Form";
 import TaskList from "./TaskList";
 
 function App() {
-  // const [count, setCount] = useState(0);
   const [value, setValue] = useState([]);
   const [text, setText] = useState("");
 
@@ -21,17 +20,13 @@ function App() {
 
     setText("");
     setEditingId(null);
-    console.log(value);
   }
 
   function onDelete(id) {
-    console.log(id);
     setValue((prev) => prev.filter((item) => item.id !== id));
-    // console.log()
   }
 
   function onToggle(id) {
-    console.log(id);
     setValue((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, isTrue: !item.isTrue } : item
@@ -45,10 +40,12 @@ function App() {
     setDraftText(itemToEdit.text);
   }
 
-  function onConfirm(id) {}
-  function onCancel() {
-    setDraftText("");
+  function onConfirm(id) {
+    setValue((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, text: draftText } : item))
+    );
     setEditingId(null);
+    setDraftText("");
   }
 
   const filterArray = value.filter((item) => !item.isTrue);
@@ -66,7 +63,6 @@ function App() {
         onToggle={onToggle}
         setEditingId={setEditingId}
         onConfirm={onConfirm}
-        onCancel={onCancel}
       />
     </div>
   );
