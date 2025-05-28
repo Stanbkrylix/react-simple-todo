@@ -7,6 +7,9 @@ export default function TaskList({
   editingId,
   draftText,
   setDraftText,
+  setEditingId,
+  onConfirm,
+  onCancel,
 }) {
   return (
     <div className="task-list-container">
@@ -17,7 +20,22 @@ export default function TaskList({
       </p>
       <ul className="lists">
         {valueArray.map((item) => {
-          return (
+          return item.id === editingId ? (
+            // editing mode
+            <div key={item.id}>
+              <li key={item.id} className="list">
+                <input
+                  value={draftText}
+                  type="text"
+                  className="edit-input"
+                  placeholder="Edit"
+                  onChange={(e) => setDraftText(e.target.value)}
+                />
+                <button className="confirm-btn">Confirm</button>
+                <button className="cancel-btn">Cancel</button>
+              </li>
+            </div>
+          ) : (
             <div key={item.id}>
               <li className="list" key={item.id}>
                 <span

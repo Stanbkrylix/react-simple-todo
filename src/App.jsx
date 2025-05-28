@@ -20,6 +20,7 @@ function App() {
     ]);
 
     setText("");
+    setEditingId(null);
     console.log(value);
   }
 
@@ -28,7 +29,7 @@ function App() {
     setValue((prev) => prev.filter((item) => item.id !== id));
     // console.log()
   }
-  function onEdit(id) {}
+
   function onToggle(id) {
     console.log(id);
     setValue((prev) =>
@@ -38,16 +39,34 @@ function App() {
     );
   }
 
+  function onEdit(id) {
+    setEditingId(id);
+    const itemToEdit = value.find((item) => item.id === id);
+    setDraftText(itemToEdit.text);
+  }
+
+  function onConfirm(id) {}
+  function onCancel() {
+    setDraftText("");
+    setEditingId(null);
+  }
+
   const filterArray = value.filter((item) => !item.isTrue);
   return (
     <div className="app-container">
       <Form text={text} setText={setText} addName={addName} />
       <TaskList
         valueArray={value}
+        filterArray={filterArray}
+        editingId={editingId}
+        draftText={draftText}
+        setDraftText={setDraftText}
         onDelete={onDelete}
         onEdit={onEdit}
         onToggle={onToggle}
-        filterArray={filterArray}
+        setEditingId={setEditingId}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
       />
     </div>
   );
